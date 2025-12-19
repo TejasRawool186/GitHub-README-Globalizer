@@ -1,0 +1,26 @@
+{
+  "name": "open-source-globalizer",
+  "version": "1.0.0",
+  "description": "Translate GitHub README.md into any language without breaking code blocks",
+  "type": "module",
+  "main": "src/main.js",
+  "scripts": {
+    "start": "node src/main.js",
+    "test": "echo \"No tests\" && exit 0"
+  },
+  "author": "Tejas Rawool",
+  "license": "ISC",
+  "dependencies": {
+    "apify": "^3.2.0",
+    "lingo.dev": "^0.74.8",
+    "remark": "^15.0.1",
+    "remark-gfm": "^4.0.0",
+    "remark-parse": "^11.0.0",
+    "remark-stringify": "^11.0.0",
+    "unified": "^11.0.5",
+    "unist-util-visit": "^5.0.0"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}

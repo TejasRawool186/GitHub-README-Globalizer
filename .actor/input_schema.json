@@ -1,0 +1,58 @@
+{
+    "title": "Globalizer Input",
+    "type": "object",
+    "schemaVersion": 1,
+    "properties": {
+        "repoUrl": {
+            "title": "GitHub Repository URL",
+            "type": "string",
+            "description": "Full URL (e.g., https://github.com/apify/crawlee).",
+            "editor": "textfield",
+            "prefill": "https://github.com/apify/crawlee"
+        },
+        "targetLanguages": {
+            "title": "Target Languages 🌍",
+            "type": "array",
+            "description": "Select languages to translate into.",
+            "editor": "stringList",
+            "prefill": [
+                "es",
+                "zh"
+            ],
+            "items": {
+                "type": "string",
+                "enum": [
+                    "es",
+                    "fr",
+                    "de",
+                    "zh",
+                    "ja",
+                    "pt",
+                    "ru",
+                    "hi"
+                ],
+                "enumTitles": [
+                    "Spanish",
+                    "French",
+                    "German",
+                    "Chinese",
+                    "Japanese",
+                    "Portuguese",
+                    "Russian",
+                    "Hindi"
+                ]
+            }
+        },
+        "lingoToken": {
+            "title": "Lingo.dev Token (Optional)",
+            "type": "string",
+            "description": "API Key. If empty, uses the Actor's default env var.",
+            "editor": "textfield",
+            "isSecret": true
+        }
+    },
+    "required": [
+        "repoUrl",
+        "targetLanguages"
+    ]
+}
