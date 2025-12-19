@@ -73,8 +73,8 @@ for (const lang of targetLanguages) {
         const storeKey = `README_${lang}_${Date.now()}.md`;
         await Actor.setValue(storeKey, resultMd, { contentType: 'text/markdown' });
 
-        // Generate public download URL
-        const downloadUrl = `https://api.apify.com/v2/key-value-stores/${Actor.getEnv().defaultKeyValueStoreId}/records/${storeKey}`;
+        // Generate public download URL (with attachment=true to force download)
+        const downloadUrl = `https://api.apify.com/v2/key-value-stores/${Actor.getEnv().defaultKeyValueStoreId}/records/${storeKey}?attachment=true`;
 
         // Push to Dataset for Table View display
         await Actor.pushData({
