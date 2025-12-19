@@ -29,7 +29,7 @@ if (!input?.repoUrl) {
 }
 // ------------------------------
 
-const { repoUrl, targetLanguages, lingoToken } = input;
+const { repoUrl, targetLanguages, lingoApiKey } = input;
 
 // Validate inputs
 if (!targetLanguages || targetLanguages.length === 0) {
@@ -56,7 +56,7 @@ try {
 }
 
 // Initialize translator
-const apiKey = lingoToken || process.env.LINGO_TOKEN;
+const apiKey = lingoApiKey || process.env.LINGO_API_KEY;
 if (!apiKey) {
     throw new Error("Lingo.dev API Key is required! Provide it in input or set LINGO_TOKEN environment variable.");
 }

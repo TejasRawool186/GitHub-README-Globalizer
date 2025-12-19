@@ -43,16 +43,17 @@
                 ]
             }
         },
-        "lingoToken": {
-            "title": "Lingo.dev Token (Optional)",
+        "lingoApiKey": {
+            "title": "Lingo.dev API Key 🔑",
             "type": "string",
-            "description": "API Key. If empty, uses the Actor's default env var.",
+            "description": "Your Lingo.dev API Key. To get one: 1) Visit lingo.dev 2) Sign up / Sign in 3) Go to Dashboard 4) Click 'Developer API' 5) Generate your API Key",
             "editor": "textfield",
             "isSecret": true
         }
     },
     "required": [
         "repoUrl",
-        "targetLanguages"
+        "targetLanguages",
+        "lingoApiKey"
     ]
 }
