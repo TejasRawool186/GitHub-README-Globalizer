@@ -68,7 +68,7 @@ This Apify Actor fetches markdown documentation from any GitHub repository, tran
 
 ---
 
-## � Output Example
+## 📊 Output Example
 
 Each translation produces a row in the dataset:
 
@@ -89,7 +89,7 @@ Each translation produces a row in the dataset:
 
 ---
 
-## � Technical Details
+## 🔧 Technical Details
 
 ### How It Works
 
@@ -106,13 +106,6 @@ Each translation produces a row in the dataset:
 - ✅ URLs and links
 - ✅ HTML tags
 - ✅ Markdown formatting
-
----
-
-## 🏆 Built For
-
-- **Lingo.dev Hackathon 2025** - Showcasing the power of AI translation
-- **Apify $1M Challenge** - Gold standard user experience
 
 ---
 
