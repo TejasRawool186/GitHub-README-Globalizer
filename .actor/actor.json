@@ -2,8 +2,8 @@
     "actorSpecification": 1,
     "name": "open-source-globalizer",
     "title": "The Open Source Globalizer",
-    "description": "Translate GitHub README.md files into multiple languages without breaking code blocks. Powered by Lingo.dev AI.",
-    "version": "1.0.0",
+    "description": "Translate GitHub documentation (README.md, CONTRIBUTING.md, etc.) into 16+ languages without breaking code blocks. Powered by Lingo.dev AI.",
+    "version": "2.0.0",
     "dockerfile": "../Dockerfile",
     "input": "./input_schema.json",
     "storages": {
@@ -13,37 +13,47 @@
             "views": {
                 "overview": {
                     "title": "🌍 Localized Files",
-                    "description": "Download your translated documentation.",
+                    "description": "Download your translated documentation files.",
                     "transformation": {
                         "fields": [
+                            "file",
                             "language",
-                            "file_name",
                             "status",
+                            "word_count",
+                            "char_count",
                             "download_url",
-                            "preview_snippet"
+                            "preview"
                         ]
                     },
                     "display": {
                         "component": "table",
                         "properties": {
-                            "language": {
-                                "label": "Language",
+                            "file": {
+                                "label": "File",
                                 "format": "text"
                             },
-                            "file_name": {
-                                "label": "File Name",
+                            "language": {
+                                "label": "Language",
                                 "format": "text"
                             },
                             "status": {
                                 "label": "Status",
                                 "format": "text"
                             },
+                            "word_count": {
+                                "label": "Words",
+                                "format": "number"
+                            },
+                            "char_count": {
+                                "label": "Characters",
+                                "format": "number"
+                            },
                             "download_url": {
-                                "label": "Download Link",
+                                "label": "Download",
                                 "format": "link"
                             },
-                            "preview_snippet": {
-                                "label": "Content Preview",
+                            "preview": {
+                                "label": "Preview",
                                 "format": "text"
                             }
                         }

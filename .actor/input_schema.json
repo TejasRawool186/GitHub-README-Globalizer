@@ -10,6 +10,41 @@
             "editor": "textfield",
             "prefill": "https://github.com/apify/crawlee"
         },
+        "branch": {
+            "title": "Branch Name",
+            "type": "string",
+            "description": "Git branch to fetch files from (e.g., main, master, develop, v2). Leave empty to auto-detect.",
+            "editor": "textfield",
+            "default": ""
+        },
+        "filesToTranslate": {
+            "title": "Files to Translate 📄",
+            "type": "array",
+            "description": "Select which markdown files to translate from the repository.",
+            "editor": "select",
+            "prefill": [
+                "README.md"
+            ],
+            "items": {
+                "type": "string",
+                "enum": [
+                    "README.md",
+                    "CONTRIBUTING.md",
+                    "CHANGELOG.md",
+                    "CODE_OF_CONDUCT.md",
+                    "SECURITY.md",
+                    "docs/README.md"
+                ],
+                "enumTitles": [
+                    "README.md",
+                    "CONTRIBUTING.md",
+                    "CHANGELOG.md",
+                    "CODE_OF_CONDUCT.md",
+                    "SECURITY.md",
+                    "docs/README.md"
+                ]
+            }
+        },
         "targetLanguages": {
             "title": "Target Languages 🌍",
             "type": "array",
@@ -29,7 +64,15 @@
                     "ja",
                     "pt",
                     "ru",
-                    "hi"
+                    "hi",
+                    "ko",
+                    "ar",
+                    "it",
+                    "nl",
+                    "pl",
+                    "tr",
+                    "vi",
+                    "th"
                 ],
                 "enumTitles": [
                     "Spanish",
@@ -39,7 +82,15 @@
                     "Japanese",
                     "Portuguese",
                     "Russian",
-                    "Hindi"
+                    "Hindi",
+                    "Korean",
+                    "Arabic",
+                    "Italian",
+                    "Dutch",
+                    "Polish",
+                    "Turkish",
+                    "Vietnamese",
+                    "Thai"
                 ]
             }
         },
