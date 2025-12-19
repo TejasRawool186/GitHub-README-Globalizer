@@ -3,7 +3,7 @@
  * Uses Lingo.dev SDK with AST parsing to translate markdown while preserving code blocks
  */
 
-import { LingoDotDevEngine } from "lingo.dev/sdk";
+import { ReplexicaEngine } from "lingo.dev/sdk";
 import { unified } from "unified";
 import remarkParse from "remark-parse";
 import remarkGfm from "remark-gfm";
@@ -18,7 +18,7 @@ export class MarkdownTranslator {
         if (!apiKey) {
             throw new Error("Lingo.dev API Key is missing! Please provide it in input or set LINGO_TOKEN env var.");
         }
-        this.lingo = new LingoDotDevEngine({ apiKey });
+        this.lingo = new ReplexicaEngine({ apiKey });
     }
 
     /**
