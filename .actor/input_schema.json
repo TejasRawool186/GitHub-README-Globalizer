@@ -14,7 +14,7 @@
             "title": "Target Languages 🌍",
             "type": "array",
             "description": "Select languages to translate into.",
-            "editor": "stringList",
+            "editor": "select",
             "prefill": [
                 "es",
                 "zh"
