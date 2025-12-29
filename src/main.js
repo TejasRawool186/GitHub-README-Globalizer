@@ -8,6 +8,7 @@ import { Actor } from 'apify';
 import { MarkdownTranslator } from './translator.js';
 import { fetchGitHubFile } from './github-utils.js';
 import { generateHtmlPreview } from './html-generator.js';
+import { generateDashboard } from './dashboard-generator.js';
 
 // Language display names for better UX
 const LANGUAGE_NAMES = {
@@ -26,15 +27,24 @@ const input = await Actor.getInput();
 if (!input?.repoUrl) {
     console.log("🛡️ Health Check Mode: Simulating successful run...");
     await Actor.setStatusMessage('Health check passed ✅');
-    await Actor.pushData({
+
+    const mockResult = {
         file: "README.md",
         language: "🇪🇸 Spanish",
         status: "✅ Success (Mock)",
         download_url: "https://apify.com",
+        html_preview_url: "https://apify.com",
         preview: "¡Hola Mundo! Example translation...",
         word_count: 150,
         char_count: 850
-    });
+    };
+
+    await Actor.pushData(mockResult);
+
+    // Generate mock dashboard for output schema
+    const dashboardHtml = generateDashboard([mockResult], 'https://github.com/example/repo');
+    await Actor.setValue('OUTPUT.html', dashboardHtml, { contentType: 'text/html; charset=utf-8' });
+
     await Actor.exit();
 }
 // ------------------------------
@@ -68,10 +78,11 @@ if (!apiKey) {
 
 const translator = new MarkdownTranslator(apiKey);
 
-// Track progress
+// Track progress and results
 const totalTasks = filesToTranslate.length * targetLanguages.length;
 let completedTasks = 0;
 let detectedBranch = branch;
+const allResults = []; // Collect all results for dashboard
 
 // Process each file
 for (const filePath of filesToTranslate) {
@@ -144,6 +155,18 @@ for (const filePath of filesToTranslate) {
                 char_count: charCount
             });
 
+            // Add to results for dashboard
+            allResults.push({
+                file: filePath,
+                language: langName,
+                status: "✅ Success",
+                download_url: downloadUrl,
+                html_preview_url: htmlPreviewUrl,
+                preview: preview,
+                word_count: wordCount,
+                char_count: charCount
+            });
+
             console.log(`✅ ${filePath} → ${langName} complete! (${wordCount} words)`);
 
         } catch (error) {
@@ -163,5 +186,12 @@ for (const filePath of filesToTranslate) {
 
 await Actor.setStatusMessage(`🎉 Complete! Translated ${completedTasks} files.`);
 console.log(`\n🎉 Translation complete! Check the Dataset tab for results.`);
+
+// Generate main dashboard HTML with all results
+if (allResults.length > 0) {
+    const dashboardHtml = generateDashboard(allResults, repoUrl);
+    await Actor.setValue('OUTPUT.html', dashboardHtml, { contentType: 'text/html; charset=utf-8' });
+    console.log('📊 Dashboard generated: OUTPUT.html');
+}
 
 await Actor.exit();
