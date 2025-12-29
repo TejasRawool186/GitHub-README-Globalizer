@@ -7,6 +7,7 @@
 import { Actor } from 'apify';
 import { MarkdownTranslator } from './translator.js';
 import { fetchGitHubFile } from './github-utils.js';
+import { generateHtmlPreview } from './html-generator.js';
 
 // Language display names for better UX
 const LANGUAGE_NAMES = {
@@ -117,8 +118,15 @@ for (const filePath of filesToTranslate) {
             // Generate download URL with attachment param
             const downloadUrl = `https://api.apify.com/v2/key-value-stores/${Actor.getEnv().defaultKeyValueStoreId}/records/${storeKey}?attachment=true`;
 
+            // Generate HTML preview
+            const htmlStoreKey = `${baseName.replace('/', '_')}_${lang}_preview.html`;
+            const htmlContent = generateHtmlPreview(resultMd, lang, filePath, downloadUrl);
+            await Actor.setValue(htmlStoreKey, htmlContent, { contentType: 'text/html; charset=utf-8' });
+
+            const htmlPreviewUrl = `https://api.apify.com/v2/key-value-stores/${Actor.getEnv().defaultKeyValueStoreId}/records/${htmlStoreKey}`;
+
             // Calculate stats for better preview
-            const wordCount = resultMd.split(/\s+/).filter(w => w.length > 0).length;
+            const wordCount = resultMd.split(/\\s+/).filter(w => w.length > 0).length;
             const charCount = resultMd.length;
 
             // Create better preview (first meaningful line)
@@ -130,6 +138,7 @@ for (const filePath of filesToTranslate) {
                 language: langName,
                 status: "✅ Success",
                 download_url: downloadUrl,
+                html_preview_url: htmlPreviewUrl,
                 preview: preview,
                 word_count: wordCount,
                 char_count: charCount

@@ -6,6 +6,7 @@
     "version": "2.0.0",
     "dockerfile": "../Dockerfile",
     "input": "./input_schema.json",
+    "output": "./output_schema.json",
     "storages": {
         "dataset": {
             "actorSpecification": 1,
@@ -22,6 +23,7 @@
                             "word_count",
                             "char_count",
                             "download_url",
+                            "html_preview_url",
                             "preview"
                         ]
                     },
@@ -50,6 +52,10 @@
                             },
                             "download_url": {
                                 "label": "Download",
+                                "format": "link"
+                            },
+                            "html_preview_url": {
+                                "label": "View HTML",
                                 "format": "link"
                             },
                             "preview": {

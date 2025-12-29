@@ -1,0 +1,26 @@
+{
+    "actorOutputSchemaVersion": 1,
+    "title": "Open Source Globalizer Output",
+    "description": "Translated GitHub documentation files with beautiful HTML previews and instant download buttons.",
+    "type": "object",
+    "properties": {
+        "htmlPreview": {
+            "type": "string",
+            "title": "📄 HTML Preview",
+            "description": "Beautiful styled preview of the latest translated README file with download button.",
+            "template": "{{links.apiDefaultKeyValueStoreUrl}}/records/README_es_preview.html"
+        },
+        "translations": {
+            "type": "string",
+            "title": "🌍 All Translations",
+            "description": "Table view of all translated files with language, status, word count, and download links.",
+            "template": "{{links.apiDefaultDatasetUrl}}/items?view=overview"
+        },
+        "downloadableFiles": {
+            "type": "string",
+            "title": "📥 All Files",
+            "description": "Browse all translated markdown and HTML files in the key-value store.",
+            "template": "{{links.apiDefaultKeyValueStoreUrl}}/keys"
+        }
+    }
+}
